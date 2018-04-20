@@ -49,7 +49,7 @@ SET post_content = replace( post_content, '</code></pre>', '
 
 ## 安装方法
 
-前往 [Release](https://github.com/sunriseydy/Pure-Highlightjs/releases "Release") 页面下载打包好的 zip 压缩包，在 WordPress 插件页面点击安装插件，再点击上传插件，选中下载好的插件压缩包即可。
+前往 [Release](https://github.com/sunriseydy/Pure-Highlightjs/releases "Release") 页面下载打包好的 zip 压缩包，在 WordPress 插件页面点击安装插件，再点击上传插件，选中下载好的插件压缩包即可。对了，在启用插件前要先把原版的插件给停用了，不然可能会产生冲突。
 
 ## 具体教程
 
