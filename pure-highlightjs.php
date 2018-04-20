@@ -1,14 +1,12 @@
 <?php
 /*
 Plugin Name: Pure Highlightjs
-Plugin URI: https://github.com/icodechef/Pure-Highlightjs
-Update By sunriseydy
-Plugin Update URL: https://github.com/sunriseydy/Pure-Highlightjs
-Description: Pure Syntax highlighting for the Web.
-Update Description: Display line-number
-Author: iCodeChef & sunriseydy
+Plugin URI: https://github.com/sunriseydy/Pure-Highlightjs
+Plugin Update URL: https://github.com/sunriseydy/Pure-Highlightjs/releases
+Description: 一个可以在编辑器中可视化选择代码语言和插入代码的 WordPress 插件，可以显示行号、鼠标悬浮高亮和被标记行高亮
+Author: sunriseydy
 Version: 2.0
-Author URI: http://icodechef.com & https://blog.sunriseydy.top/
+Author URI: https://blog.sunriseydy.top/
 License: MIT
 */
 
