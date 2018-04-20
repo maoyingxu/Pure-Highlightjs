@@ -47,6 +47,10 @@ SET post_content = replace( post_content, '</code></pre>', '
 
 此项目中已经将插件的插入代码部分做了修改，在插入代码时自动将代码和结束标签间用换行隔开。
 
+## 安装方法
+
+前往 [Release](https://github.com/sunriseydy/Pure-Highlightjs/releases "Release") 页面下载打包好的 zip 压缩包，在 WordPress 插件页面点击安装插件，再点击上传插件，选中下载好的插件压缩包即可。
+
 ## 具体教程
 
 [纯代码让 pure-highlightjs 插件能够显示代码行号(已更新插件)](https://blog.sunriseydy.top/technology/server-blog/wordpress/pure-highlightjs-with-line-number/ "纯代码让 pure-highlightjs 插件能够显示代码行号(已更新插件)")
