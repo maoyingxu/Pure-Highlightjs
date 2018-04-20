@@ -1,0 +1,33 @@
+/* 文章内代码行号高亮 */
+.code-with-line-number > ul {
+  list-style: decimal;
+  margin: 0;
+  margin-left: 40px;
+  padding: 0;
+}
+.code-with-line-number li {
+  list-style: decimal-leading-zero;
+  border-left: 1px solid #ddd;
+  padding-left: 2px;
+  position: relative;
+}
+.code-with-line-number li.mark {
+  /* 被标记行高亮背景色 需根据代码高亮主题进行修改 */
+  background-color: #423c36 !important;
+}
+.code-with-line-number li:hover {
+  /* 鼠标悬浮行高亮背景色 需根据代码高亮主题进行修改 */
+  background-color: #607d8b4d !important;
+}
+.code-with-line-number .line-num {
+  width: 40px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: -40px;
+  cursor: pointer;
+}
+pre {
+  border-left: none;
+  padding: 0;  
+}
