@@ -2,10 +2,13 @@
 /*
 Plugin Name: Pure Highlightjs
 Plugin URI: https://github.com/icodechef/Pure-Highlightjs
+Update By sunriseydy
+Plugin Update URL: https://github.com/sunriseydy/Pure-Highlightjs
 Description: Pure Syntax highlighting for the Web.
-Author: iCodeChef
-Version: 1.0
-Author URI: http://icodechef.com
+Update Description: Display line-number
+Author: iCodeChef & sunriseydy
+Version: 2.0
+Author URI: http://icodechef.com & https://blog.sunriseydy.top/
 License: MIT
 */
 
@@ -26,6 +29,7 @@ function pure_highlightjs_activation() {
 
 function pure_highlightjs_deactivation() {
     delete_option('pure-highlightjs-theme');
+	delete_option('line_color_setting');
 }
 
 add_action( 'admin_init', 'pure_highlightjs_admin_init' );
@@ -38,7 +42,9 @@ function pure_highlightjs_admin_init() {
     }
 
     register_setting( 'pure-highlightjs-group', 'pure-highlightjs-theme' );
-
+	
+	register_setting( 'pure-highlightjs-group', 'line_color_setting' );
+	
     load_plugin_textdomain( 'pure-highlightjs', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
 
     pure_highlightjs_update_option();
@@ -61,7 +67,11 @@ add_action( 'wp_enqueue_scripts', 'pure_highlightjs_assets' );
 function pure_highlightjs_assets() {
     wp_enqueue_style( 'pure-highlightjs-style', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/styles/' . pure_highlightjs_option('pure-highlightjs-theme', PURE_HIGHLIGHTJS_DEFAULT_THEME) . '.css', array(), '0.9.2' );
     wp_enqueue_style( 'pure-highlightjs-css', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.css', array(), '0.1.0' );
-    wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '0.9.2', true );
+    wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '9.12.0', true );
+//添加行号
+	wp_enqueue_script( 'line-number-js', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/line-number.js', array(), '0.1.8', true );
+	wp_enqueue_style( 'line-number-css', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/line-number.css', array(), '0.1.0' );
+
 }
 
 add_action( 'admin_enqueue_scripts', 'pure_highlightjs_admin_assets' );
@@ -76,8 +86,7 @@ function pure_highlightjs_admin_assets() {
             'settings_page_pure-highlightjs-config',
         ) ) ) {
         wp_enqueue_script( 'pure-highlightjs', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.js', array(), '0.1.0', true );
-
-        wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '0.9.2', true );
+        wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '9.12.0', true );
 
         wp_localize_script( 'pure-highlightjs', 'PureHighlightjsTrans', array(
             'title' => __( "Code Insert", 'pure-highlightjs' ),
@@ -150,6 +159,66 @@ function pure_highlightjs_get_style_list($theme = '') {
     return $themes;
 }
 
+//添加颜色选择器
+add_action('admin_enqueue_scripts', 'line_color_setting_scripts');
+function line_color_setting_scripts(){
+	if( isset($_GET['page']) && $_GET['page'] == "pure-highlightjs-config" ){
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_script( 'line_color_setting', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/line-color-setting.js', array( 'wp-color-picker' ), false, true );	
+	}
+}
+
+function line_color_head_style(){?>
+	<style type="text/css">
+		.code-with-line-number li:hover{
+			background-color: <?php echo line_color_get_setting('hover-color');?>!important
+		}
+		.code-with-line-number li.mark {
+			background-color: <?php echo line_color_get_setting('mark-color');?>!important
+		}
+	</style>
+<?php }
+add_action( 'wp_head', 'line_color_head_style' );
+
+/**
+	 * 获取设置
+	 * @return [array]
+	 */
+	function line_color_get_setting($key=NULL){
+		$setting = get_option('line_color_setting');
+		return $key ? $setting[$key] : $setting;
+	}
+
+	/**
+	 * 删除设置
+	 * @return [void]
+	 */
+	function line_color_delete_setting(){
+		delete_option('line_color_setting');
+	}
+
+	/**
+	 * [wpzan_setting_key description]
+	 * @param  [type] $key [description]
+	 * @return [type]      [description]
+	 */
+	function line_color_setting_key($key){
+		if( $key ){
+			return "line_color_setting[$key]";
+		}
+
+		return false;
+	}
+
+	/**
+	 * 升级设置
+	 * @param  [array] $setting
+	 * @return [void]
+	 */
+	function line_color_update_setting($setting){
+		update_option('line_color_setting', $setting);
+	}	
+	
 function pure_highlightjs_get_page_url() {
     $args = array( 'page' => 'pure-highlightjs-config' );
     return add_query_arg( $args, admin_url( 'options-general.php') ); 
