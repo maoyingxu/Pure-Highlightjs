@@ -30,10 +30,7 @@ A lightweight syntax highlighter for WordPress
 
 解决方法：手动修改之前的文章，或者用 SQL 语句批量更改之前文章中的 “`</code></pre>`”
 
-改为 “
-
-`</code></pre>`
-”
+改为 “`\n</code></pre>`”
 
 即将代码最后一行和 `</code></pre>` 之间用换行隔开。
 
@@ -41,11 +38,14 @@ SQL 语句为：
 
 ```sql
 UPDATE wp_posts
-SET post_content = replace( post_content, '</code></pre>', '
-</code></pre>' );
+SET post_content = replace( post_content, '</code></pre>', '\n</code></pre>' );
+UPDATE wp_posts
+SET post_content = replace( post_content, '\n\n</code></pre>', '\n</code></pre>' );
+UPDATE wp_posts
+SET post_content = replace( post_content, '\r\n\r\n</code></pre>', '\r\n</code></pre>' );
 ```
 
-此项目中已经将插件的插入代码部分做了修改，在插入代码时自动将代码和结束标签间用换行隔开。
+对于之后编写新文章插入代码，此项目中已经将插件的插入代码部分做了修改，在插入代码时自动将代码和结束标签间用换行隔开。
 
 ## 安装方法
 
