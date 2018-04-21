@@ -58,7 +58,7 @@
 		</p> <a href="https://blog.sunriseydy.top/technology/server-blog/wordpress/pure-highlightjs-with-line-number/#toc-3" target="_blank">详细教程点我</a>
     </form>
 	<style>
-		.line-color-setting-li{position: relative;padding-left: 80px}
+		.line-color-setting-li{position: relative;padding-left: 95px}
 		.line-color-setting-li code{position: absolute;left: 0;top: 1px;}
 	</style>
 </div>
