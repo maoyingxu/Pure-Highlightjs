@@ -32,6 +32,14 @@ function pure_highlightjs_deactivation() {
 
 add_action( 'admin_init', 'pure_highlightjs_admin_init' );
 
+//将之前文章中的代码结束标志和代码最后一行以 \n 隔开
+function add_newline_between_code_and_end() {
+	global $wpdb;
+	$wpdb->query("UPDATE $wpdb->posts SET post_content = replace( post_content, '</code></pre>', '\n</code></pre>' );");
+	$wpdb->query("UPDATE $wpdb->posts SET post_content = replace( post_content, '\n\n</code></pre>', '\n</code></pre>' );");
+	$wpdb->query("UPDATE $wpdb->posts SET post_content = replace( post_content, '\r\n\r\n</code></pre>', '\r\n</code></pre>' );");
+	$wpdb->flush();
+}
 function pure_highlightjs_admin_init() {
     static $inited = false;
 
@@ -46,6 +54,8 @@ function pure_highlightjs_admin_init() {
     load_plugin_textdomain( 'pure-highlightjs', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
 
     pure_highlightjs_update_option();
+	
+	add_newline_between_code_and_end();
 
     $inited = true;
 }
