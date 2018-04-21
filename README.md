@@ -24,7 +24,7 @@ A lightweight syntax highlighter for WordPress
 
 [highlight.js](https://highlightjs.org/ "highlight.js")
 
-## BugList 
+## BugList
 
 和 `</code></pre>` 在同一行的代码不被显示，原版插件在插入代码时代码最后和结束标签连在一起，因此使用了显示行号 JS 脚本后会导致原来文章中代码最后一行不显示。
 
@@ -34,20 +34,24 @@ A lightweight syntax highlighter for WordPress
 
 即将代码最后一行和 `</code></pre>` 之间用换行隔开。
 
-*注意* 
+### *Attention*
 
-已在插件主文件中添加了执行 SQL 语句的函数，因此在启用插件时会自动执行下面的 SQL 语句。（只会在第一次启用插件时执行）
-
+已在插件主文件中添加了执行 SQL 语句的函数，因此在启用插件时会自动执行下面的 SQL 语句。
 
 SQL 语句为：
 
 ```sql
 UPDATE wp_posts
-SET post_content = replace( post_content, '</code></pre>', '\n</code></pre>' );
+SET post_content = replace( post_content, '</code></pre>', '\n</code></pre>' )
+WHERE post_status = 'publish' AND post_type IN ('post','page');
+
 UPDATE wp_posts
-SET post_content = replace( post_content, '\n\n</code></pre>', '\n</code></pre>' );
+SET post_content = replace( post_content, '\n\n</code></pre>', '\n</code></pre>' )
+WHERE post_status = 'publish' AND post_type IN ('post','page');
+
 UPDATE wp_posts
-SET post_content = replace( post_content, '\r\n\r\n</code></pre>', '\r\n</code></pre>' );
+SET post_content = replace( post_content, '\r\n\r\n</code></pre>', '\r\n</code></pre>' )
+WHERE post_status = 'publish' AND post_type IN ('post','page');
 ```
 
 对于之后编写新文章插入代码，此项目中已经将插件的插入代码部分做了修改，在插入代码时自动将代码和结束标签间用换行隔开。
@@ -64,4 +68,4 @@ SET post_content = replace( post_content, '\r\n\r\n</code></pre>', '\r\n</code><
 
 The MIT License.
 
-Copyright (c) 2016 iCodeChef
+Copyright (c) Sunriseydy
