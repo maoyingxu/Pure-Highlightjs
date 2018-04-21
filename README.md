@@ -24,15 +24,20 @@ A lightweight syntax highlighter for WordPress
 
 [highlight.js](https://highlightjs.org/ "highlight.js")
 
-## BugList *必看*
+## BugList 
 
 和 `</code></pre>` 在同一行的代码不被显示，原版插件在插入代码时代码最后和结束标签连在一起，因此使用了显示行号 JS 脚本后会导致原来文章中代码最后一行不显示。
 
-解决方法：手动修改之前的文章，或者用 SQL 语句批量更改之前文章中的 “`</code></pre>`”
+解决方法：修改之前的文章，或者用 SQL 语句批量更改之前文章中的 “`</code></pre>`”
 
 改为 “`\n</code></pre>`”
 
 即将代码最后一行和 `</code></pre>` 之间用换行隔开。
+
+*注意* 
+
+已在插件主文件中添加了执行 SQL 语句的函数，因此在启用插件时会自动执行下面的 SQL 语句。（只会在第一次启用插件时执行）
+
 
 SQL 语句为：
 
