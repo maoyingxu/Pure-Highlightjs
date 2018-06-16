@@ -5,10 +5,10 @@
         // generate language values
         var languageValues = [{
             text: 'Default',
-            value: null
+            value: 'none'
         }];
 
-        tinymce.each(hljs.listLanguages(), function(value, key){
+        tinymce.each(Prism.listLanguages() , function(value, key){
             languageValues.push({
                 text : value,
                 value : value
@@ -42,14 +42,14 @@
                         }
                     ],
                     onsubmit : function(e){
-                        var code = e.data.code.replace(/\r\n/gmi, '\n'),
+                        var code = e.data.code.replace(/\r\n/g, '\n'),
                             tag = 'code';
 
                         code =  tinymce.html.Entities.encodeAllRaw(code);
 
                         var sp = (e.data.addspaces ? '&nbsp;' : '');
 
-                        editor.insertContent(sp + '<pre class="pure-highlightjs"><code class="' + e.data.lang + '">' + code + '</code></pre>' + sp + '<p></p>');
+                        editor.insertContent(sp + '<pre class="pure-highlightjs line-numbers"><code class="language-' + e.data.lang + '">' + code + '\n</code></pre>' + sp + '<p>\n</p>');
                     }
                 });
             }

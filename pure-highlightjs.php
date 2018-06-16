@@ -16,7 +16,7 @@ if ( !function_exists( 'add_action' ) ) {
 
 define( 'PURE_HIGHLIGHTJS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'PURE_HIGHLIGHTJS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'PURE_HIGHLIGHTJS_DEFAULT_THEME', 'default' );
+define( 'PURE_HIGHLIGHTJS_DEFAULT_THEME', 'Default' );
 
 register_activation_hook( __FILE__, 'pure_highlightjs_activation' );
 register_deactivation_hook( __FILE__, 'pure_highlightjs_deactivation' );
@@ -59,9 +59,9 @@ function pure_highlightjs_action_links( $links, $file ) {
 add_action( 'wp_enqueue_scripts', 'pure_highlightjs_assets' );
 
 function pure_highlightjs_assets() {
-    wp_enqueue_style( 'pure-highlightjs-style', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/styles/' . pure_highlightjs_option('pure-highlightjs-theme', PURE_HIGHLIGHTJS_DEFAULT_THEME) . '.css', array(), '0.9.2' );
+    wp_enqueue_style( 'prism-style', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/styles/' . pure_highlightjs_option('pure-highlightjs-theme', PURE_HIGHLIGHTJS_DEFAULT_THEME) . '.css', array(), '0.9.2' );
     wp_enqueue_style( 'pure-highlightjs-css', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.css', array(), '0.1.0' );
-    wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '0.9.2', true );
+    wp_enqueue_script( 'Prism-js', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/prism.js', array(), '0.9.2', true );
 }
 
 add_action( 'admin_enqueue_scripts', 'pure_highlightjs_admin_assets' );
@@ -77,7 +77,7 @@ function pure_highlightjs_admin_assets() {
         ) ) ) {
         wp_enqueue_script( 'pure-highlightjs', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.js', array(), '0.1.0', true );
 
-        wp_enqueue_script( 'pure-highlightjs-pack', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/highlight.pack.js', array(), '0.9.2', true );
+        wp_enqueue_script( 'prism', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/prism.js', array(), '0.9.2', true );
 
         wp_localize_script( 'pure-highlightjs', 'PureHighlightjsTrans', array(
             'title' => __( "Code Insert", 'pure-highlightjs' ),
