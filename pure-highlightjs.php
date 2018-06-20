@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Pure Highlightjs
-Plugin URI: https://github.com/icodechef/Pure-Highlightjs
-Description: Pure Syntax highlighting for the Web.
-Author: iCodeChef
-Version: 1.0
-Author URI: http://icodechef.com
+Plugin URI: https://blog.sunriseydy.top/
+Description: 一个可以在编辑器中可视化选择代码语言和插入代码的 WordPress 插件，可以显示行号（使用 PrismJs）
+Author: sunriseydy iCodeChef
+Version: 3.0.0
+Author URI: https://blog.sunriseydy.top/
 License: MIT
 */
 
@@ -62,6 +62,7 @@ function pure_highlightjs_assets() {
     wp_enqueue_style( 'prism-style', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/styles/' . pure_highlightjs_option('pure-highlightjs-theme', PURE_HIGHLIGHTJS_DEFAULT_THEME) . '.css', array(), '0.9.2' );
     wp_enqueue_style( 'pure-highlightjs-css', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.css', array(), '0.1.0' );
     wp_enqueue_script( 'Prism-js', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/prism.js', array(), '0.9.2', true );
+    wp_enqueue_script( 'pure-highlight', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.js', array(), '0.1.0', true );
 }
 
 add_action( 'admin_enqueue_scripts', 'pure_highlightjs_admin_assets' );
@@ -75,9 +76,9 @@ function pure_highlightjs_admin_assets() {
             'post-new.php',
             'settings_page_pure-highlightjs-config',
         ) ) ) {
-        wp_enqueue_script( 'pure-highlightjs', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.js', array(), '0.1.0', true );
-
+        wp_enqueue_style( 'prism-style', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/styles/' . pure_highlightjs_option('pure-highlightjs-theme', PURE_HIGHLIGHTJS_DEFAULT_THEME) . '.css', array(), '0.9.2' );
         wp_enqueue_script( 'prism', PURE_HIGHLIGHTJS_PLUGIN_URL . 'highlight/prism.js', array(), '0.9.2', true );
+        wp_enqueue_script( 'pure-highlight', PURE_HIGHLIGHTJS_PLUGIN_URL . 'assets/pure-highlight.js', array(), '0.1.0', true );
 
         wp_localize_script( 'pure-highlightjs', 'PureHighlightjsTrans', array(
             'title' => __( "Code Insert", 'pure-highlightjs' ),

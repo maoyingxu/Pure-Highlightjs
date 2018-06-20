@@ -8,7 +8,7 @@
             value: 'none'
         }];
 
-        tinymce.each(Prism.listLanguages() , function(value, key){
+        tinymce.each(pure-highlight.listLanguages() , function(value, key){
             languageValues.push({
                 text : value,
                 value : value
