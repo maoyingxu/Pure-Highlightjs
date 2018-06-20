@@ -26,6 +26,10 @@ A lightweight syntax highlighter for WordPress
 
 ## BugList
 
+未解决的 Bug：
+
+代码中的单行注释 `// ***** ` 后面所有的代码不会被高亮。判断是显示行号 JS 代码导致的，由于能力问题暂不能修复该 Bug，目前的解决办法为使用 Prism 实现代码高亮和显示行号。详见 [Prism](https://github.com/sunriseydy/Pure-Highlightjs/tree/Prism) 分支。
+
 和 `</code></pre>` 在同一行的代码不被显示，原版插件在插入代码时代码最后和结束标签连在一起，因此使用了显示行号 JS 脚本后会导致原来文章中代码最后一行不显示。
 
 解决方法：修改之前的文章，或者用 SQL 语句批量更改之前文章中的 “`</code></pre>`”
