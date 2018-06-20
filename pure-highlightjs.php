@@ -4,7 +4,7 @@ Plugin Name: Pure Highlightjs
 Plugin URI: https://github.com/sunriseydy/Pure-Highlightjs
 Description: A WordPress plugin that visually selects the code language and inserts the code in the editor, and highlights code syntax with displaying line numbers (using PrismJs).
 Author: sunriseydy iCodeChef
-Version: 3.0.0
+Version: 3.0.1
 Author URI: https://blog.sunriseydy.top/
 License: MIT
 */
