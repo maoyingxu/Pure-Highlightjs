@@ -10,7 +10,7 @@ A WordPress plugin that visually selects the code language and inserts the code 
 
 # 下载安装
 
-在本分支中直接下载 [Pure-Highlightjs-3.0.1.zip](Pure-Highlightjs-3.0.1.zip) 压缩包，在 WordPress 的插件安装页面上传插件压缩包即可（需要先停用并删除老版本的 Pure-HightLightJs 插件）。
+在本分支中直接下载 [Pure-Highlightjs-3.0.1.zip](https://github.com/sunriseydy/Pure-Highlightjs/raw/Prism/Pure-Highlightjs-3.0.1.zip) 压缩包，在 WordPress 的插件安装页面上传插件压缩包即可（需要先停用并删除老版本的 Pure-HightLightJs 插件）。
 
 *本项目的 Release 页面发布的压缩包仍然是 v2 版本！*
 
