@@ -60,6 +60,10 @@ WHERE post_status = 'publish' AND post_type IN ('post','page');
 
 对于之后编写新文章插入代码，此项目中已经将插件的插入代码部分做了修改，在插入代码时自动将代码和结束标签间用换行隔开。
 
+## [Prism](https://github.com/sunriseydy/Pure-Highlightjs/tree/Prism) 分支
+
+[Prism](https://github.com/sunriseydy/Pure-Highlightjs/tree/Prism) 分支解决了目前已知的 Bug，不过没有了动画，能接受上面所说的Bug的，可以继续使用该版本(v2)，若无法接受则使用 [Prism](https://github.com/sunriseydy/Pure-Highlightjs/tree/Prism) 版本(v3)。
+
 ## 安装方法
 
 前往 [Release](https://github.com/sunriseydy/Pure-Highlightjs/releases "Release") 页面下载打包好的 zip 压缩包，在 WordPress 插件页面点击安装插件，再点击上传插件，选中下载好的插件压缩包即可。对了，在启用插件前要先把原版的插件给停用了，不然可能会产生冲突。
